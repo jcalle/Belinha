@@ -39,7 +39,7 @@
 #include "TPZSSpStructMatrix.h"
 
 // To Identifier of the material into the domain
-int ElementIDMat = 5;
+int ElementIDMat = 1;
 int DimProblem = 2;
 
 // Exact solution of the differential equation  (Laplacian)
@@ -62,12 +62,15 @@ void UniformRefinement(TPZGeoMesh* gmesh,int ndiv);
 
 // Utilitaries
 void SetMaterialIdForElements(TPZGeoMesh *gmesh,int matid);
+void SetMatBCIdForElements(TPZGeoMesh *gmesh,int matid, TPZVec<REAL> &P0,TPZVec<REAL> &P1);
 
 
 // PROGRAM
 int main(int argc, char *argv[]) {
 
     /// PRIORITARY -> RELATIVE TO GEOMETRICAL MESH
+    // Type of elements
+    int typeel = 3; // 3 - triangles, 4 - quadrilaterals
     // To create geometric mesh from GID file or not
     bool fromgid = true;
     TPZGeoMesh * gmesh = new TPZGeoMesh();
@@ -81,6 +84,22 @@ int main(int argc, char *argv[]) {
         gmesh = myreader.GeometricGIDMesh(GeoGridFile);
         // Inserting material id
         SetMaterialIdForElements(gmesh,ElementIDMat);
+        TPZManVector<REAL> P0(3,0.);
+        TPZManVector<REAL> P1(3,0.);
+        P0[0] = -0.5;
+        SetMatBCIdForElements(gmesh, -3, P0,P1);
+        P0 = P1;
+        P1[0] = 0.5;
+        SetMatBCIdForElements(gmesh, -2, P0,P1);
+        P0 = P1;
+        P1[1] = 1.;
+        SetMatBCIdForElements(gmesh, -4, P0,P1);
+        P0 = P1;
+        P1[0] = -0.5;
+        SetMatBCIdForElements(gmesh, -6, P0,P1);
+        P0 = P1;
+        P1[1] = 0.;
+        SetMatBCIdForElements(gmesh, -5, P0,P1);
     }
     
     // Refining mesh (uniform)
@@ -89,7 +108,7 @@ int main(int argc, char *argv[]) {
     
     /// PRIORITARY -> RELATIVE TO COMPUTATIONAL MESH
     ///Indicacao de malha DGFem. Se false, vamos criar malha H1
-    bool DGFEM = false;
+    bool DGFEM = true;
     TPZCompMesh * cmesh = new TPZCompMesh(gmesh);
     CreatingComputationalMesh(cmesh,ElementIDMat,DGFEM);
     
@@ -125,8 +144,12 @@ int main(int argc, char *argv[]) {
     // PRIORITARY -> RELATIVE TO PRINT SOLUTION TO VISUALIZATION BY PARAVIEW
     ///Exportando para Paraview
     TPZVec<std::string> scalarVars(1), vectorVars(0);
+    std::stringstream sout;
+    sout << "Laplacian" << DimProblem << "D_MESHINIT_E" << typeel << "H" << std::setprecision(2) << nref << "_cont" << DGFEM << ".vtk";
+
     scalarVars[0] = "Solution";
-    an.DefineGraphMesh(2,scalarVars,vectorVars,"solucao.vtk");
+ 
+    an.DefineGraphMesh(DimProblem,scalarVars,vectorVars,sout.str());
     int resolution = 0;
     an.PostProcess(resolution);
 
@@ -201,6 +224,7 @@ void UniformRefinement(TPZGeoMesh* gmesh,int ndiv) {
         }///iel
     }///i
 }
+// Inserting material id to elements from GID mesh
 void SetMaterialIdForElements(TPZGeoMesh *gmesh,int matid) {
     int nel = gmesh->NElements();
     for (int iel = 0; iel < nel; iel++) {
@@ -210,6 +234,49 @@ void SetMaterialIdForElements(TPZGeoMesh *gmesh,int matid) {
         if(gel->Dimension()!=DimProblem) continue;
         gel->SetMaterialId(matid);
     }///iel
+}
+// Inserting material id to elements from GID mesh
+void SetMatBCIdForElements(TPZGeoMesh *gmesh,int matid, TPZVec<REAL> &P0,TPZVec<REAL> &P1) {
+    int count = 0, nel = gmesh->NElements();
+    TPZManVector<REAL> Center(3,0.), Point(3,0.);
+    REAL t = -1., r=-1., p=-1.;
+    for (int iel = 0; iel < nel; iel++) {
+        TPZGeoEl * gel = gmesh->ElementVec()[iel];
+        if (!gel) continue;
+        if (gel->HasSubElement()) continue;//para nao dividir elementos ja divididos
+        if(gel->Dimension()!=DimProblem-1) continue;
+        gel->CenterPoint(gel->NSides()-1,Center);
+        gel->X(Center,Point);
+        if(IsZero(P1[0]-P0[0])) {
+            if(!IsZero(Point[0]-P0[0])) continue;
+            t = 0.;
+        } else
+            t=(Point[0]-P0[0])/(P1[0]-P0[0]);
+        if(IsZero(P1[1]-P0[1])) {
+            if(!IsZero(Point[1]-P0[1])) continue;
+            r = 0.;
+        }
+        else
+            r=(Point[1]-P0[1])/(P1[1]-P0[1]);
+        if(IsZero(P1[2]-P0[2])) {
+            if(!IsZero(Point[2]-P0[2])) continue;
+            p = 0.;
+        }
+        else
+            p=(Point[2]-P0[2])/(P1[2]-P0[2]);
+        
+        if(r<0. || t<0. || p<0.) continue;
+        if(r>1. || t> 1. || p>1.) continue;
+        if((IsZero(t) && IsZero(r)) || (IsZero(t) && IsZero(p)) || (IsZero(r) && IsZero(p))) {
+            gel->SetMaterialId(matid); count++;
+            continue;
+        }
+        if((IsZero(t) && IsZero(r-p)) || (IsZero(r) && IsZero(t-p)) ||(IsZero(p) && IsZero(r-t))) {
+            gel->SetMaterialId(matid);
+            count++;
+        }
+    }///iel
+    std::cout << std::endl << "BC Condition "  << matid << " com " << count << "elements." << std::endl;
 }
 
 // To computational mesh

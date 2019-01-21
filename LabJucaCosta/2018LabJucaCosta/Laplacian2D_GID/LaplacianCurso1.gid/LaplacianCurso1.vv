@@ -1,4 +1,4 @@
-BeginZE /Users/labmec/Documents/GitHub/LabJucaCosta/2018LabJucaCosta/Laplacian2D_GID/LaplacianCurso1.gid/LaplacianCurso1.vv
+BeginZE /Users/labmec/Documents/GitHub/Belinha/LabJucaCosta/2018LabJucaCosta/Laplacian2D_GID/LaplacianCurso1.gid/LaplacianCurso1.vv
    x -1.36809659004211426 1.7014305591583252
    y 1.29487180709838867 -0.628205299377441406
    z -2.17944955825805664 2.17944955825805664
@@ -29,7 +29,7 @@ BeginZE /Users/labmec/Documents/GitHub/LabJucaCosta/2018LabJucaCosta/Laplacian2D
    OGLStereo(EyeDistance) 0.075
    OGLStereo(LeftEyeDistance) 1 0 0 1
    OGLStereo(RightEyeDistance) 0 1 1 1
-EndZE /Users/labmec/Documents/GitHub/LabJucaCosta/2018LabJucaCosta/Laplacian2D_GID/LaplacianCurso1.gid/LaplacianCurso1.vv
+EndZE /Users/labmec/Documents/GitHub/Belinha/LabJucaCosta/2018LabJucaCosta/Laplacian2D_GID/LaplacianCurso1.gid/LaplacianCurso1.vv
 
 BeginMirror
    Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
