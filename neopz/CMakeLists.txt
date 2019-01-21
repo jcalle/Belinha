@@ -1,13 +1,13 @@
 # @file neopz/CMakeList.txt  -- First file to read for CMake
 
-cmake_minimum_required (VERSION 3.11.0)
+#cmake_minimum_required (VERSION 3.11.0)
 
 #disable excessive warning messages by Microsoft VC compiler
 set (CMAKE_USER_MAKE_RULES_OVERRIDE "${CMAKE_CURRENT_LIST_DIR}/CompilerOptionsMSVC.cmake")
 
 set(CMAKE_CONFIGURATION_TYPES Debug Release CACHE TYPE  INTERNAL FORCE )
 
-project (BELINHA)
+project (PZ)
 
 #set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 

@@ -39,7 +39,7 @@
 #include "TPZSSpStructMatrix.h"
 
 // To Identifier of the material into the domain
-int ElementIDMat = 5;
+int ElementIDMat = 3;
 int DimProblem = 2;
 
 // Exact solution of the differential equation  (Laplacian)
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 
     /// PRIORITARY -> RELATIVE TO GEOMETRICAL MESH
     // Type of elements
-    int typeel = 3; // 3 - triangles, 4 - quadrilaterals
+    int typeel = 4; // 3 - triangles, 4 - quadrilaterals
     // To create geometric mesh from GID file or not
     bool fromgid = true;
     TPZGeoMesh * gmesh = new TPZGeoMesh();
@@ -105,15 +105,17 @@ int main(int argc, char *argv[]) {
         SetMatBCIdForElements(gmesh, -5, P0,P1);
     }
     
-    // Refining mesh (uniform)
-    int nref = 0;
-    UniformRefinement(gmesh,nref);
-    
     /// PRIORITARY -> RELATIVE TO COMPUTATIONAL MESH
     ///Indicacao de malha DGFem. Se false, vamos criar malha H1
     bool DGFEM = true;
     TPZCompMesh * cmesh = new TPZCompMesh(gmesh);
     CreatingComputationalMesh(cmesh,ElementIDMat,DGFEM);
+
+    // Refining mesh (uniform)
+    int nref = 1;
+    UniformRefinement(gmesh,nref);
+    TPZCompMesh * cmesh2 = new TPZCompMesh(gmesh);
+    CreatingComputationalMesh(cmesh2,ElementIDMat,DGFEM);
     
     // PRIORITARY -> RELATIVE TO SOLVING THE PROBLEM
     ///Analysis : construção do problema algébrico e inversão do sistema
@@ -134,6 +136,25 @@ int main(int argc, char *argv[]) {
     ///Resolução do sistema
     an.Solve();
     
+    // PRIORITARY -> RELATIVE TO SOLVING THE PROBLEM
+    ///Analysis : construção do problema algébrico e inversão do sistema
+    TPZAnalysis an2(cmesh2);
+    
+    ///Criando structural matrix - skyline não simétrica por causa do DGFEM usado
+    TPZSkylineNSymStructMatrix matriz2(cmesh2);
+    an.SetStructuralMatrix(matriz2);
+    
+    ///Decomposição LU
+    TPZStepSolver<STATE> step2;
+    step2.SetDirect(ELU);
+    an2.SetSolver(step2);
+    
+    ///Assemble da matriz de rigidez e vetor de carga
+    an2.Assemble();
+    
+    ///Resolução do sistema
+    an2.Solve();
+
     // UNNECESSARY -> RELATIVE TO CALCULATING ERROR AFTER SOLVE PROCESS
     ///Calculando erro da aproximacao
     an.SetExact(SolExataSteklov);///definindo solucao exata do problema
@@ -155,6 +176,11 @@ int main(int argc, char *argv[]) {
     an.DefineGraphMesh(DimProblem,scalarVars,vectorVars,sout.str());
     int resolution = 0;
     an.PostProcess(resolution);
+
+    std::stringstream sout2;
+    sout2 << "Laplace2Sol" << DimProblem << "D_MESHINIT_E" << typeel << "H" << std::setprecision(2) << nref << "_cont" << DGFEM << ".vtk";
+    an2.DefineGraphMesh(DimProblem,scalarVars,vectorVars,sout2.str());
+    an2.PostProcess(resolution);
 
     // Cleaning created meshes
     if(!DGFEM)

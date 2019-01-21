@@ -5,5 +5,6 @@ cmake_minimum_required (VERSION 3.11.0)
 #To include Juca Costa Lab Projects
 if(NOT BUILD_TUTORIAL)
 	add_subdirectory(Laplacian2D_GID)
+	add_subdirectory(Laplacian2D2Sol_GID)
 endif()
 
