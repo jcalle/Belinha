@@ -10,5 +10,9 @@
 			add_subdirectory(Poisson3D_Shock)
 			add_subdirectory(Poisson3D_AutoHP)
 
+	add_subdirectory(Laplacian2D_GID)
+	add_subdirectory(Elasticity2D_Wav_Gid)
+
+
 	#Project developed by Olivier
 	#add_subdirectory(OlivierRoussel)

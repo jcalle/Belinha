@@ -821,7 +821,3 @@ install(FILES
 install(EXPORT PZTargets 
         DESTINATION "${INSTALL_CMAKE_DIR}")
 
-#To include Juca Costa Lab Projects
-if(NOT BUILD_TUTORIAL AND NOT BUILD_PROJECTS AND NOT BUILD_PLASTICITY_MATERIALS AND NOT BUILD_TESTING)
-	add_subdirectory(../LabJucaCosta ../LabJucaCosta)
-endif()

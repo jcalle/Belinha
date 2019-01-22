@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 
     /// PRIORITARY -> RELATIVE TO GEOMETRICAL MESH
     // Type of elements
-    int typeel = 4; // 3 - triangles, 4 - quadrilaterals
+    int typeel = 3; // 3 - triangles, 4 - quadrilaterals
     // To create geometric mesh from GID file or not
     bool fromgid = true;
     TPZGeoMesh * gmesh = new TPZGeoMesh();
@@ -181,6 +181,11 @@ int main(int argc, char *argv[]) {
     sout2 << "Laplace2Sol" << DimProblem << "D_MESHINIT_E" << typeel << "H" << std::setprecision(2) << nref << "_cont" << DGFEM << ".vtk";
     an2.DefineGraphMesh(DimProblem,scalarVars,vectorVars,sout2.str());
     an2.PostProcess(resolution);
+    an2.SetExact(SolExataSteklov);///definindo solucao exata do problema
+    an2.PostProcess(erro,anPostProcessFile);///calculando erro
+    std::cout << "\nErro de aproximação:\n";
+    std::cout << "Norma H1 = " << erro[0] << "\nNorma L2 = " << erro[1]
+    << "\nSeminorma H1 = " << erro[2] << "\n\n";
 
     // Cleaning created meshes
     if(!DGFEM)
