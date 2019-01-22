@@ -1,6 +1,6 @@
 # @file neopz/CMakeList.txt  -- First file to read for CMake
 
-cmake_minimum_required (VERSION 3.11.0)
+#cmake_minimum_required (VERSION 3.11.0)
 
 #disable excessive warning messages by Microsoft VC compiler
 set (CMAKE_USER_MAKE_RULES_OVERRIDE "${CMAKE_CURRENT_LIST_DIR}/CompilerOptionsMSVC.cmake")
@@ -417,6 +417,7 @@ endif()
 
 #To building all the specific projects developed with PZ environment
 option(BUILD_PROJECTS "To build specific projects." OFF)
+option(BUILD_TESTING "To build specific projects." OFF)
 
 #To building all the performance projects developed with PZ environment
 option(BUILD_PERF_TESTS "To build the performance test." OFF)
@@ -487,12 +488,8 @@ if(WIN32)
 	add_definitions(-DPTW32_STATIC_LIB)
     #enabling /bigobj
     add_definitions("/bigobj")
-    if (NOT CMAKE_GENERATOR MATCHES "Ninja")
-        add_definitions("/MP")
-    endif()
-    if (CMAKE_GENERATOR MATCHES "NMake")
-        set(CMAKE_MAKE_PROGRAM D:/Downloads/jom_1_1_3/jom.exe CACHE STRING "Path to jom.exe" FORCE)
-        message("CMAKE_MAKE_PROGRAM set to 'D:/Downloads/jom_1_1_3/jom.exe' to enable parallel builds in Windows")
+	if (NOT CMAKE_GENERATOR MATCHES "Ninja")
+		add_definitions("/MP")
     endif()
     FOREACH(FLAG_TYPE EXE MODULE SHARED)
 		# preventing .pdb unnecessary file generation overhead: no /DEBUG flag in linker flags
@@ -704,13 +701,13 @@ install(TARGETS pz
 		ARCHIVE
 		DESTINATION ${NEOPZ_LIB})
 
-#if(BUILD_PROJECTS OR BUILD_TUTORIAL)
-#	add_subdirectory(Projects)
-#endif()
+if(BUILD_PROJECTS OR BUILD_TUTORIAL)
+	add_subdirectory(Projects)
+endif()
 
-#if(BUILD_UNITTESTING)
-#	add_subdirectory(UnitTest_PZ)
-#endif()
+if(BUILD_UNITTESTING)
+	add_subdirectory(UnitTest_PZ)
+endif()
 
 #Enabling tests
 ENABLE_TESTING()
@@ -823,3 +820,4 @@ install(FILES
 # Install the export set for use with the install-tree
 install(EXPORT PZTargets 
         DESTINATION "${INSTALL_CMAKE_DIR}")
+

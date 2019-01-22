@@ -17,7 +17,7 @@
 #ifndef REALH
 #define REALH
 
-//#include <pz_config.h>
+#include <pz_config.h>
 
 #ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES
