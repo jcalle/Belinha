@@ -9,3 +9,4 @@ if(NOT BUILD_TUTORIAL AND NOT BUILD_PROJECTS)
 	add_subdirectory(Projects_LabJC)
 endif()
 
+#Choi Sung-Boing

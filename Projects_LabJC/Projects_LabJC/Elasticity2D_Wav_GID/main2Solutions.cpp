@@ -2,6 +2,8 @@
 //  PZ
 //
 
+#include "belinha.h"
+
 #include "pzgmesh.h"
 #include "pzcmesh.h"
 #include "pzcompel.h"
@@ -79,11 +81,11 @@ int main(int argc, char *argv[]) {
     else {
         // IMPORTANDO MALHA GEOMETRICA DESDE ARQUIVO GID
         TPZReadGIDGrid myreader;
-        std::string GeoGridFile = PZSOURCEDIR;
+        std::string GeoGridFile = BELSOURCEDIR;
         if(typeel==3)
-            GeoGridFile += "/../LabJucaCosta/2018LabJucaCosta/Laplacian2D2Sol_GID/Lapl2DT.dump";
+            GeoGridFile += "/Projects_LabJC/Projects_LabJC/Elasticity2D_Wav_GID/Lapl2DT.dump";
         else
-            GeoGridFile += "/../LabJucaCosta/2018LabJucaCosta/Laplacian2D2Sol_GID/Lapl2DQ.dump";
+            GeoGridFile += "/Projects_LabJC/Projects_LabJC/Elasticity2D_Wav_GID/Lapl2DQ.dump";
         gmesh = myreader.GeometricGIDMesh(GeoGridFile);
         // Inserting material id
         SetMaterialIdForElements(gmesh,ElementIDMat);

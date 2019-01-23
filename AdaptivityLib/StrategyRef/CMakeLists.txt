@@ -3,5 +3,4 @@
 file(GLOB headers *.h)
 file(GLOB sources *.cpp)
 
-install(FILES ${headers} DESTINATION ${LABJC_INCLUDE}/Analysis)
-set(pzestimators_STAT_SRCS ${headers} ${sources} PARENT_SCOPE)
+set(refinements_STAT_SRCS ${headers} ${sources} PARENT_SCOPE)
