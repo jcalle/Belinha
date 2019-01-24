@@ -1,7 +1,7 @@
 # Project to apply hp-adaptive process to Poisson3D material on hexahedra with a shock problem
 
-file(GLOB header *.h ../LibRefine/*.h)
-file(GLOB source *.cpp ../LibRefine/*.cpp)
+file(GLOB header *.h ../../../AdaptivityLib/StrategyRef/*.h)
+file(GLOB source *.cpp ../../../AdaptivityLib/StrategyRef/*.cpp)
 
 set(HPAdaptive_SRCS ${header} ${source})
 

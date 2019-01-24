@@ -262,7 +262,7 @@ public:
 
     template <class T>
     void Read(TPZVec<T> &vec) {
-   //     Read(vec, NULL);
+        Read(vec, NULL);
     }
 
     template <class T,

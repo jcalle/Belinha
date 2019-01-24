@@ -68,8 +68,8 @@
 
 #include "problem.h"
 
-#include "../LibRefine/CreateAndRefineMeshes.h"
-#include "../LibRefine/HPAdaptiveProcesses.h"
+#include "CreateAndRefineMeshes.h"
+#include "HPAdaptiveProcesses.h"
 
 using namespace std;
 using namespace pzshape;

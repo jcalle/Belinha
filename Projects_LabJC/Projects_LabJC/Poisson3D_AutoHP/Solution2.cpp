@@ -7,7 +7,7 @@
 #include "pzcmesh.h"
 
 #include "problem.h"
-#include "../LibRefine/HPAdaptiveProcesses.h"
+#include "HPAdaptiveProcesses.h"
 
 extern REAL GlobScale;
 

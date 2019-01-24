@@ -78,7 +78,7 @@
 #include "pzbuildmultiphysicsmesh.h"
 #include "pzcondensedcompel.h"
 
-#include "../LibRefine/CreateAndRefineMeshes.h"
+#include "CreateAndRefineMeshes.h"
 
 using namespace std;
 using namespace pzshape;
@@ -93,8 +93,8 @@ int64_t MaxEquations = 1500000;
 // Input - output
 ofstream out("OutPoissonArcTan.txt",ios::app);             // To store output of the console
 // ABOUT H P ADAPTIVE
-int MaxPOrder = 9;     // Maximum order for p refinement allowed
-int MaxHLevel = 7;      // Maximum level for h refinement allowed
+int MaxPOrder = 5;     // Maximum order for p refinement allowed
+int MaxHLevel = 4;      // Maximum level for h refinement allowed
 int MaxHUsed = 0;
 int MaxPUsed = 0;
 

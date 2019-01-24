@@ -50,8 +50,8 @@ public:
     void Write(TPZStream& buf, int withclassid) const{
         buf.Write(&fNumEq);
         buf.Write(fIsActive);
- //       buf.Write(fActiveEqs);
- //       buf.Write(fDestIndices);
+        buf.Write(fActiveEqs);
+        buf.Write(fDestIndices);
     }
 
     ///Define as equacoes ativas de [mineq, maxeq)

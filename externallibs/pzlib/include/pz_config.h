@@ -15,11 +15,11 @@
 #endif
 
 #ifndef PZ_REVISION
-#define PZ_REVISION "afd0b2314"
+#define PZ_REVISION "0f240136e"
 #endif
 
 #ifndef PZ_REVISION_DATE
-#define PZ_REVISION_DATE "Tue Jan 22 17:39:59 2019"
+#define PZ_REVISION_DATE "Thu Jan 24 09:42:47 2019"
 #endif
 
 #ifndef LOG4CXX
@@ -27,7 +27,7 @@
 #endif
 
 #ifndef _AUTODIFF
-/* #undef _AUTODIFF */
+#define _AUTODIFF
 #endif
 
 #ifndef USING_BOOST
