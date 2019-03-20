@@ -16,3 +16,7 @@
 
 	#Project developed by Olivier
 	#add_subdirectory(OlivierRoussel)
+
+
+#Projects to Conservation Laws
+	add_subdirectory(ThesisPhD)
