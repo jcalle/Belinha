@@ -1,21 +1,22 @@
-# @file neopz/CMakeList.txt  -- First file to read for CMake
+			#Jorge 2017 - Implementing error analysis to MHM Method
+			add_subdirectory(MHM_Jorge)			
+			#Jorge 2018 - Implementing error analysis from Paredes Thesis
+			add_subdirectory(HDiv_Jorge)							
+		#Testing generating ellipse from a vector of points by least square method
+			add_subdirectory(EllipseGenerator)
 
-cmake_minimum_required (VERSION 3.11.0)
+			# Tutorial about hp-adaptive techniques
+			add_subdirectory(Poisson3D_Fichera)
+			add_subdirectory(Poisson3D_Shock)
+			add_subdirectory(Poisson3D_AutoHP)
 
-#To include Juca Costa Lab Projects
-if(NOT BUILD_TUTORIAL AND NOT BUILD_PROJECTS)
-
-	#Curso em Arequipa 2017
-	#source_group(Aqp_2017 FILES ${aqp2017})
-	add_subdirectory(2017Arequipa)
-
-	#Jorge 2017 - Implementing error analysis
-	#add_subdirectory(ABelinha)
-	add_subdirectory(ErrorEstimation)
-
-	add_subdirectory(Projects_LabJC)
-
-	endif()
+	add_subdirectory(Laplacian2D_GID)
+	add_subdirectory(Elasticity2D_Wav_Gid)
 
 
-#Choi Sung-Boing
+	#Project developed by Olivier
+	#add_subdirectory(OlivierRoussel)
+
+
+#Projects to Conservation Laws
+	add_subdirectory(ThesisPhD)

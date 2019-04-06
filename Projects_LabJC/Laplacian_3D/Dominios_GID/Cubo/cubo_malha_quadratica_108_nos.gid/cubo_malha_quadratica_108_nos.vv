@@ -1,0 +1,37 @@
+BeginZE C:\Users\Usuario\Documents\PUB\FIGURAS GID\cubo_malha_quadratica_108_nos.gid\cubo_malha_quadratica_108_nos.vv
+   x -1.8562130928039551 2.2070841789245605
+   y 1.736409068107605 -0.46801909804344177
+   z -2.7980761528015137 2.398076057434082
+   e 0.86602538824081421
+   v -0.081551983952522278 -0.34219592809677124 -0.34175136685371399
+   r 0.87146842479705811
+   m 0.53221589326858521 0.65146458148956299 -0.54068487882614136 0 -0.5398375391960144 0.75311052799224854 0.37603181600570679 0 0.65216690301895142 0.091751895844936371 0.75250244140625 0 0 0 0 1
+   c 0.40000000596046448 0.40000000596046448 0.20000000298023224
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 1
+   DrawingType 0
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 1
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE C:\Users\Usuario\Documents\PUB\FIGURAS GID\cubo_malha_quadratica_108_nos.gid\cubo_malha_quadratica_108_nos.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+

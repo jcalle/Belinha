@@ -1,22 +1,21 @@
-# @file CMakeList.txt  -- First file to read for CMake
+# @file neopz/CMakeList.txt  -- First file to read for CMake
 
 cmake_minimum_required (VERSION 3.11.0)
 
-project (BELINHA)
+#To include Juca Costa Lab Projects
+if(NOT BUILD_TUTORIAL AND NOT BUILD_PROJECTS)
 
-set(BELSOURCEDIR ${PROJECT_SOURCE_DIR})
+	#Curso em Arequipa 2017
+	#source_group(Aqp_2017 FILES ${aqp2017})
+	add_subdirectory(2017Arequipa)
 
-#include directories to neopz
-include_directories(. ./externallibs/pzlib/include/Mesh ./externallibs/pzlib/include/Analysis ./externallibs/pzlib/include/Save ./externallibs/pzlib/include/Common ./externallibs/pzlib/include/Frontal ./externallibs/pzlib/include/Geom ./externallibs/pzlib/include/Integral ./externallibs/pzlib/include/LinearSolvers ./externallibs/pzlib/include/Material ./externallibs/pzlib/include/Material/REAL ./externallibs/pzlib/include/Matrix ./externallibs/pzlib/include/Multigrid ./externallibs/pzlib/include/Post ./externallibs/pzlib/include/Pre ./externallibs/pzlib/include/Refine ./externallibs/pzlib/include/Refine/RefPatterns ./externallibs/pzlib/include/Shape ./externallibs/pzlib/include/StrMatrix ./externallibs/pzlib/include/SubStruct ./externallibs/pzlib/include/Topology ./externallibs/pzlib/include/Util ./externallibs/pzlib/include/Util/Hash ./externallibs/pzlib/include/External ./externallibs/pzlib/include/External/FAD ./externallibs/pzlib/include/External/FAD/fad ./externallibs/pzlib/include/External/FAD/TinyFadET ./externallibs/pzlib/include/External/FAD/TinyFad ./externallibs/pzlib/include/)
+	#Jorge 2017 - Implementing error analysis
+	#add_subdirectory(ABelinha)
+	add_subdirectory(ErrorEstimation)
 
-include_directories(./AdaptivityLib/StrategyRef ./AdaptivityLib/ErrorEstimators ./AdaptivityLib/WaveletCoef)
-
-link_directories( ./externallibs/pzlib/lib)
-
-#To include Adaptive library
-	add_subdirectory(AdaptivityLib)
-
-#To include Projects implemented in Juca Costa Laboratory
 	add_subdirectory(Projects_LabJC)
 
+	endif()
 
+
+#Choi Sung-Boing

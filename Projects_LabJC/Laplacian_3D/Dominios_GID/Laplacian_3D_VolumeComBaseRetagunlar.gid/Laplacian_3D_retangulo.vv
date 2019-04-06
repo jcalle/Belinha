@@ -1,0 +1,37 @@
+BeginZE C:\Users\Usuario\Dropbox\Projeto_Simulacao\Dominios GID\Cubo_GID\cubo_hexaedro_com_BC.gid\Laplacian_3D_retangulo.gid\Laplacian_3D_retangulo.vv
+   x -1.7648649215698242 3.7648649215698242
+   y 2 -1
+   z -4.5 -1.5
+   e 1.5
+   v -0.4276489362133441 0.07357089855314991 -0.087514197668023416
+   r 0.89668553981811006
+   m 0.97385716438293457 0.09402039647102356 0.20679062604904175 0 -0.21987046301364899 0.61891531944274902 0.75405621528625488 0 -0.057089213281869888 -0.77981024980545044 0.62340742349624634 0 0 0 0 1
+   c 1 0.5 3
+   pd 0
+   pno 0
+   pfo 0
+   pf 4
+   pv 0
+   NowUse 1
+   DrawingType 0
+   LightVector 90 90 150 0
+   OGLShadow(UseShadows) 0
+   OGLShadow(RenderMode) RenderNice
+   OGLShadow(ShadowBias) -0.002
+   OGLShadow(AmbientShadows) 1
+   OGLShadow(UseFBO) 1
+   OGLShadow(FBOSize) 2048
+   OGLShadow(DimmedLightFactor) 0.02
+   OGLStereo(UseStereo) 0
+   OGLStereo(RelativeEyeDistance) 1
+   OGLStereo(FlipEyes) 0
+   OGLStereo(StereoMode) AnaglyphColors
+   OGLStereo(EyeDistance) 0.075
+   OGLStereo(LeftEyeDistance) 1 0 0 1
+   OGLStereo(RightEyeDistance) 0 1 1 1
+EndZE C:\Users\Usuario\Dropbox\Projeto_Simulacao\Dominios GID\Cubo_GID\cubo_hexaedro_com_BC.gid\Laplacian_3D_retangulo.gid\Laplacian_3D_retangulo.vv
+
+BeginMirror
+   Mirror 0 Angle 0.0 AngleFake -15.0 SizeFactor 2.0 HeightOffset 0.25 Color #d9e5f24d Backlight Off EdgeStyle No Type Scene DrawMode Mirror
+EndMirror
+
